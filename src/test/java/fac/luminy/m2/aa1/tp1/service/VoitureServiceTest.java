@@ -117,12 +117,12 @@ public class VoitureServiceTest {
         voiture2.setCouleur("Blue");
 
         // Arrange
-        when(voitureRepository.findVoitureByMarque("Marque1")).thenReturn(List.of(voiture1));
-        when(voitureRepository.findVoitureByMarque("Marque2")).thenReturn(List.of(voiture2));
+        when(voitureRepository.findVoitureByCriteria("Marque1", 0, Double.MAX_VALUE)).thenReturn(List.of(voiture1));
+        when(voitureRepository.findVoitureByCriteria("Marque2", 0, Double.MAX_VALUE)).thenReturn(List.of(voiture2));
 
         // Act
-        List<VoitureDTO> marque1Voitures = voitureService.rechercherVoituresSelonMarques("Marque1");
-        List<VoitureDTO> marque2Voitures = voitureService.rechercherVoituresSelonMarques("Marque2");
+        List<VoitureDTO> marque1Voitures = voitureService.rechercherVoituresSelonCritère("Marque1", 0, Double.MAX_VALUE);
+        List<VoitureDTO> marque2Voitures = voitureService.rechercherVoituresSelonCritère("Marque2", 0, Double.MAX_VALUE);
 
         // Assert
         assertEquals(1, marque1Voitures.size());
@@ -146,63 +146,6 @@ public class VoitureServiceTest {
         assertEquals(voiture2.getPrix(), marque2Voitures.get(0).getPrix());
         assertEquals(voiture2.getConsommation(), marque2Voitures.get(0).getConsommation());
         assertEquals(voiture2.getCouleur(), marque2Voitures.get(0).getCouleur());
-    }
-
-    @Test
-    public void testGetVoituresByType(){
-        // Arrange
-        Voiture voiture1 = new Voiture();
-        voiture1.setId(1L);
-        voiture1.setModele("Model S");
-        voiture1.setMarque("Tesla");
-        voiture1.setAnnee(2020);
-        voiture1.setType(TypeVoiture.SUV);
-        voiture1.setChevauxFiscaux(10);
-        voiture1.setPrix(80000.0);
-        voiture1.setConsommation(15.0);
-        voiture1.setCouleur("Red");
-
-        Voiture voiture2 = new Voiture();
-        voiture2.setId(2L);
-        voiture2.setModele("Model 3");
-        voiture2.setMarque("Tesla");
-        voiture2.setAnnee(2021);
-        voiture2.setType(TypeVoiture.BERLINE);
-        voiture2.setChevauxFiscaux(8);
-        voiture2.setPrix(50000.0);
-        voiture2.setConsommation(10.0);
-        voiture2.setCouleur("Blue");
-
-        // Arrange
-        when(voitureRepository.findVoitureByType(TypeVoiture.SUV)).thenReturn(List.of(voiture1));
-        when(voitureRepository.findVoitureByType(TypeVoiture.BERLINE)).thenReturn(List.of(voiture2));
-
-        // Act
-        List<VoitureDTO> suvs = voitureService.rechercherVoituresSelonType(TypeVoiture.SUV);
-        List<VoitureDTO> berlines = voitureService.rechercherVoituresSelonType(TypeVoiture.BERLINE);
-
-        // Assert
-        assertEquals(1, suvs.size());
-        assertEquals(voiture1.getId(), suvs.get(0).getId());
-        assertEquals(voiture1.getModele(), suvs.get(0).getModele());
-        assertEquals(voiture1.getMarque(), suvs.get(0).getMarque());
-        assertEquals(voiture1.getAnnee(), suvs.get(0).getAnnee());
-        assertEquals(voiture1.getType(), suvs.get(0).getType());
-        assertEquals(voiture1.getChevauxFiscaux(), suvs.get(0).getChevauxFiscaux());
-        assertEquals(voiture1.getPrix(), suvs.get(0).getPrix());
-        assertEquals(voiture1.getConsommation(), suvs.get(0).getConsommation());
-        assertEquals(voiture1.getCouleur(), suvs.get(0).getCouleur());
-
-        assertEquals(1, berlines.size());
-        assertEquals(voiture2.getId(), berlines.get(0).getId());
-        assertEquals(voiture2.getModele(), berlines.get(0).getModele());
-        assertEquals(voiture2.getMarque(), berlines.get(0).getMarque());
-        assertEquals(voiture2.getAnnee(), berlines.get(0).getAnnee());
-        assertEquals(voiture2.getType(), berlines.get(0).getType());
-        assertEquals(voiture2.getChevauxFiscaux(), berlines.get(0).getChevauxFiscaux());
-        assertEquals(voiture2.getPrix(), berlines.get(0).getPrix());
-        assertEquals(voiture2.getConsommation(), berlines.get(0).getConsommation());
-        assertEquals(voiture2.getCouleur(), berlines.get(0).getCouleur());
     }
 
     @Test
@@ -230,18 +173,18 @@ public class VoitureServiceTest {
         voiture2.setCouleur("Blue");
 
         // Arrange
-        when(voitureRepository.findVoitureByPrixBetween(0, 30000.0)).thenReturn(List.of());
-        when(voitureRepository.findVoitureByPrixBetween(0, voiture2.getPrix())).thenReturn(List.of(voiture2));
-        when(voitureRepository.findVoitureByPrixBetween(0, voiture1.getPrix())).thenReturn(List.of(voiture2, voiture1));
-        when(voitureRepository.findVoitureByPrixBetween(70000.0, voiture1.getPrix())).thenReturn(List.of(voiture1));
-        when(voitureRepository.findVoitureByPrixBetween(90000.0, 100000.0)).thenReturn(List.of());
+        when(voitureRepository.findVoitureByCriteria("TKT",0, 30000.0)).thenReturn(List.of());
+        when(voitureRepository.findVoitureByCriteria("TKT",0, voiture2.getPrix())).thenReturn(List.of(voiture2));
+        when(voitureRepository.findVoitureByCriteria("TKT",0, voiture1.getPrix())).thenReturn(List.of(voiture2, voiture1));
+        when(voitureRepository.findVoitureByCriteria("TKT",70000.0, voiture1.getPrix())).thenReturn(List.of(voiture1));
+        when(voitureRepository.findVoitureByCriteria("TKT",90000.0, 100000.0)).thenReturn(List.of());
 
         // Act
-        List<VoitureDTO> zeroToBelow2 = voitureService.rechercherVoituresSelonPrixMinMax(0, 30000.0);
-        List<VoitureDTO> below2ToAbove2Below1 = voitureService.rechercherVoituresSelonPrixMinMax(0, voiture2.getPrix());
-        List<VoitureDTO> belowAllToV1 = voitureService.rechercherVoituresSelonPrixMinMax(0, voiture1.getPrix());
-        List<VoitureDTO> above2Below1ToV1 = voitureService.rechercherVoituresSelonPrixMinMax(70000.0, voiture1.getPrix());
-        List<VoitureDTO> above1ToAbove1 = voitureService.rechercherVoituresSelonPrixMinMax(90000.0, 100000.0);
+        List<VoitureDTO> zeroToBelow2 = voitureService.rechercherVoituresSelonCritère("TKT",0, 30000.0);
+        List<VoitureDTO> below2ToAbove2Below1 = voitureService.rechercherVoituresSelonCritère("TKT",0, voiture2.getPrix());
+        List<VoitureDTO> belowAllToV1 = voitureService.rechercherVoituresSelonCritère("TKT",0, voiture1.getPrix());
+        List<VoitureDTO> above2Below1ToV1 = voitureService.rechercherVoituresSelonCritère("TKT",70000.0, voiture1.getPrix());
+        List<VoitureDTO> above1ToAbove1 = voitureService.rechercherVoituresSelonCritère("TKT",90000.0, 100000.0);
 
         // Assert
         assertEquals(0, zeroToBelow2.size());

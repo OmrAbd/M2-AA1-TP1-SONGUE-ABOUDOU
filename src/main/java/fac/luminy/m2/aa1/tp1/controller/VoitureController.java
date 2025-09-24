@@ -8,10 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,5 +48,14 @@ public class VoitureController {
             @PathVariable String nom) {
         log.info("Controller - recuperation de voiture pour {}", nom);
         return service.recupererVoituresProprietaire(nom);
+    }
+
+    @GetMapping("")
+    public List<VoitureDTO> getVoitures(
+            @Parameter(description = "La marque de voiture demandées.") String marque,
+            @Parameter(description = "Prix minimum") double prixMin,
+            @Parameter(description = "Prix minimum") double prixMax     ) {
+        // TODO : FAIS LA !!!!!
+        return null;
     }
 }

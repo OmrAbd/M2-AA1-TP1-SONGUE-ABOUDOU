@@ -43,15 +43,13 @@ public class VoitureService {
         return listeRetour;
     }
 
-    public List<VoitureDTO> rechercherVoituresSelonMarques(String marques){
-        return null;
+    public List<VoitureDTO> rechercherVoituresSelonCritère(String marques, double prixMin, double prixMax){
+        List <VoitureDTO> listeRetour = new ArrayList<>();
+        List <Voiture> listVoiture = voitureRepository.findVoitureByCriteria(marques, prixMin, prixMax);
+        if(listVoiture != null){
+            listVoiture.stream().map(VoitureDTO::new).forEach(listeRetour::add);
+        }
+        return listeRetour;
     }
 
-    public List<VoitureDTO> rechercherVoituresSelonType(TypeVoiture typeVoiture){
-        return null;
-    }
-
-    public List<VoitureDTO> rechercherVoituresSelonPrixMinMax(double min, double max){
-        return null;
-    }
 }
