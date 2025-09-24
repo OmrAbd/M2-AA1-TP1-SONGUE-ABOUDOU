@@ -28,15 +28,15 @@ public class VoitureDTO {
 
 
     public VoitureDTO(Voiture voiture) {
-        this.id = voiture.getId();
-        this.modele = voiture.getModele();
-        this.marque = voiture.getMarque();
-        this.annee = voiture.getAnnee();
-        this.type = voiture.getType();
-        this.chevauxFiscaux = voiture.getChevauxFiscaux();
-        this.prix = voiture.getPrix();
-        this.consommation = voiture.getConsommation();
-        this.couleur = voiture.getCouleur();
+        this.id = voiture == null ? null : voiture.getId();
+        this.modele = voiture == null ? null : voiture.getModele();
+        this.marque = voiture == null ? null : voiture.getMarque();
+        this.annee = voiture == null ? 0 : voiture.getAnnee();
+        this.type = voiture == null ? TypeVoiture.NULL_TYPE : voiture.getType();
+        this.chevauxFiscaux = voiture == null ? 0 : voiture.getChevauxFiscaux();
+        this.prix = voiture == null ? 0 : voiture.getPrix();
+        this.consommation = voiture == null ? 0 : voiture.getConsommation();
+        this.couleur = voiture == null ? null : voiture.getCouleur();
     }
 
 }

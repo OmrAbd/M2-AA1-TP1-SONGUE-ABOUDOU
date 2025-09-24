@@ -36,7 +36,15 @@ public class PersonneDTO {
         this.adresse = personne.getAdresse();
         this.codePostal = personne.getCodePostal();
         this.email = personne.getEmail();
-        this.voituresPossedees = personne.getVoituresPossedees().stream().map(VoitureDTO::new).toList();
-        this.voituresLouees = personne.getVoituresLouees().stream().map(VoitureDTO::new).toList();
+        this.voituresPossedees = personne.getVoituresPossedees() == null ? null :
+                personne.getVoituresPossedees()
+                        .stream()
+                        .map(VoitureDTO::new)
+                        .toList();
+        this.voituresLouees = personne.getVoituresLouees() == null ? null :
+                personne.getVoituresLouees()
+                        .stream()
+                        .map(VoitureDTO::new)
+                        .toList();
     }
 }
