@@ -1,5 +1,6 @@
 package fac.luminy.m2.aa1.tp1.service;
 
+import fac.luminy.m2.aa1.tp1.model.TypeVoiture;
 import fac.luminy.m2.aa1.tp1.model.dto.VoitureDTO;
 import fac.luminy.m2.aa1.tp1.model.entity.Voiture;
 import fac.luminy.m2.aa1.tp1.repository.VoitureRepository;
@@ -40,5 +41,17 @@ public class VoitureService {
         // Retourner la liste des voitures
         log.info("{} voitures pour le proprietaire avec le nom {}",listeRetour.size(),nomProprietaire);
         return listeRetour;
+    }
+
+    public List<VoitureDTO> rechercherVoituresSelonMarques(String marques){
+        return null;
+    }
+
+    public List<VoitureDTO> rechercherVoituresSelonType(TypeVoiture typeVoiture){
+        return null;
+    }
+
+    public List<VoitureDTO> rechercherVoituresSelonPrixMinMax(double min, double max){
+        return null;
     }
 }
