@@ -30,5 +30,13 @@ public class PersonneDTO {
      * @param personne l'entité {@link Personne} à convertir en PersonneDTO
      */
     public PersonneDTO(Personne personne){
+        this.id = personne.getId();
+        this.nom = personne.getNom();
+        this.prenom = personne.getPrenom();
+        this.adresse = personne.getAdresse();
+        this.codePostal = personne.getCodePostal();
+        this.email = personne.getEmail();
+        this.voituresPossedees = personne.getVoituresPossedees().stream().map(VoitureDTO::new).toList();
+        this.voituresLouees = personne.getVoituresLouees().stream().map(VoitureDTO::new).toList();
     }
 }
