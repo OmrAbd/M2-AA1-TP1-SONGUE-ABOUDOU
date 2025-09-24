@@ -34,7 +34,9 @@ public class VoitureService {
         List <Voiture> listVoiture =  voitureRepository.findByProprietaireNom(nomProprietaire);
 
         // Convertir les voitures en voituresDTO
-        listVoiture.stream().map(VoitureDTO::new).forEach(listeRetour::add);
+        if(listVoiture != null){
+            listVoiture.stream().map(VoitureDTO::new).forEach(listeRetour::add);
+        }
         // Retourner la liste des voitures
         log.info("{} voitures pour le proprietaire avec le nom {}",listeRetour.size(),nomProprietaire);
         return listeRetour;
