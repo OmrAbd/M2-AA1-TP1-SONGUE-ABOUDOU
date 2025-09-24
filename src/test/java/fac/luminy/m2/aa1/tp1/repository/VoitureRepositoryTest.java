@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class VoitureRepositoryTest {
 
     @Autowired
+    private PersonneRepository personneRepository;
+
+    @Autowired
     private VoitureRepository voitureRepository;
 
     @Test
@@ -28,12 +31,13 @@ public class VoitureRepositoryTest {
 
         Personne proprietaire = new Personne();
         proprietaire.setNom("Greenwood");
+        personneRepository.save(proprietaire);
         voiture.setProprietaire(proprietaire);
         voiture.setMarque("Ferrari");
         voitureRepository.save(voiture);
 
         // Act
-        List<Voiture> result = voitureRepository.findByProprietaireNom("Doe");
+        List<Voiture> result = voitureRepository.findByProprietaireNom("Greenwood");
 
         // Assert
         assertNotNull(result);
