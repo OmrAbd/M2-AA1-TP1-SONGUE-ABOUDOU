@@ -1,6 +1,5 @@
 package fac.luminy.m2.aa1.tp1.repository;
 
-import fac.luminy.m2.aa1.tp1.model.entity.Personne;
 import fac.luminy.m2.aa1.tp1.model.entity.Voiture;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

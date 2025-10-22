@@ -1,14 +1,14 @@
 package fac.luminy.m2.aa1.tp1.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Getter
-@Setter
+@Data
 @Entity(name = "PERSONNE")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Personne {
 
     @Id
@@ -20,12 +20,4 @@ public class Personne {
     private String codePostal;
     private String email;
 
-    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
-    private List<Voiture> voituresPossedees = List.of();
-
-    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
-    private List<Location> locationsEnTantQueVendeur = List.of();
-
-    @OneToMany(mappedBy = "locataire", fetch = FetchType.LAZY)
-    private List<Location> locationsEnTantQueClient = List.of();
 }
