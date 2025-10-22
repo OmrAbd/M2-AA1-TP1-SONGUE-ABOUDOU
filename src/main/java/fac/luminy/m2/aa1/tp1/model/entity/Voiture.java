@@ -27,7 +27,7 @@ public class Voiture {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    private Personne proprietaire;
+    private Proprietaire proprietaire;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Location> locations = List.of();

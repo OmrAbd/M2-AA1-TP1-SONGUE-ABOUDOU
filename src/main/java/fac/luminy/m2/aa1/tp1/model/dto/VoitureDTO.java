@@ -25,7 +25,7 @@ public class VoitureDTO {
     private double prix;
     private double consommation;
     private String couleur;
-//    private PersonneDTO proprietaire;
+    private VendeurDTO proprietaire;
 
     public VoitureDTO(Voiture voiture) {
         this.id = voiture == null ? null : voiture.getId();
@@ -37,7 +37,7 @@ public class VoitureDTO {
         this.prix = voiture == null ? 0 : voiture.getPrix();
         this.consommation = voiture == null ? 0 : voiture.getConsommation();
         this.couleur = voiture == null ? null : voiture.getCouleur();
-//        this.proprietaire = new PersonneDTO(voiture.getProprietaire());
+        this.proprietaire = new VendeurDTO(voiture.getProprietaire());
     }
 
 }
