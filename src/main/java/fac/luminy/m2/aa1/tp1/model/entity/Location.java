@@ -34,7 +34,7 @@ public class Location{
     @Min(value = 1)
     private int nombreDeJour = 1;
 
-    public LocalDate endDate(){
+    public LocalDate getEndDate(){
         return startDate.plusDays(nombreDeJour);
     }
 
