@@ -2,8 +2,11 @@ package fac.luminy.m2.aa1.tp1.model.entity;
 
 import fac.luminy.m2.aa1.tp1.model.TypeVoiture;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -20,15 +23,13 @@ public class Voiture {
     private int chevauxFiscaux;
     private double prix;
     private double consommation;
-    //TODO ajout pour le nouveau TP
     private String couleur;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "proprietaire_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
     private Personne proprietaire;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "locataire_id")
-    private Personne locataire;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Location> locations = List.of();
 
 }

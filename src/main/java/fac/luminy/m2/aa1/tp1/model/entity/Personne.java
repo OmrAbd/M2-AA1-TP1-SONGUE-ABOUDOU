@@ -23,6 +23,9 @@ public class Personne {
     @OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
     private List<Voiture> voituresPossedees = List.of();
 
+    @OneToMany(mappedBy = "proprietaire", fetch = FetchType.LAZY)
+    private List<Location> locationsEnTantQueVendeur = List.of();
+
     @OneToMany(mappedBy = "locataire", fetch = FetchType.LAZY)
-    private List<Voiture> voituresLouees = List.of();
+    private List<Location> locationsEnTantQueClient = List.of();
 }

@@ -20,9 +20,9 @@ public class PersonneDTO {
     private String adresse;
     private String codePostal;
     private String email;
-
     private List<VoitureDTO> voituresPossedees;
-    private List <VoitureDTO> voituresLouees;
+    private List<LocationDTO> locationEnTantQueVendeur;
+    private List<LocationDTO> locationEnTantQueClient;
 
     /**
      * Construit un nouveau PersonneDTO à partir d'une entité Personne donnée.
@@ -41,10 +41,15 @@ public class PersonneDTO {
                         .stream()
                         .map(VoitureDTO::new)
                         .toList();
-        this.voituresLouees = personne.getVoituresLouees() == null ? null :
-                personne.getVoituresLouees()
+        this.locationEnTantQueVendeur = personne.getLocationsEnTantQueVendeur() == null ? null :
+                personne.getLocationsEnTantQueVendeur()
                         .stream()
-                        .map(VoitureDTO::new)
+                        .map(LocationDTO::new)
+                        .toList();
+        this.locationEnTantQueClient = personne.getLocationsEnTantQueClient() == null ? null :
+                personne.getLocationsEnTantQueClient()
+                        .stream()
+                        .map(LocationDTO::new)
                         .toList();
     }
 }
