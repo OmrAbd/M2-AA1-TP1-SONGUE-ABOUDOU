@@ -1,6 +1,7 @@
 package fac.luminy.m2.aa1.tp1.controller;
 
 import fac.luminy.m2.aa1.tp1.model.dto.VoitureDTO;
+import fac.luminy.m2.aa1.tp1.repository.VoitureRepository;
 import fac.luminy.m2.aa1.tp1.service.VoitureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -55,7 +56,7 @@ public class VoitureController {
             @Parameter(description = "La marque de voiture demandées.") String marque,
             @Parameter(description = "Prix minimum") double prixMin,
             @Parameter(description = "Prix minimum") double prixMax     ) {
-        // TODO : FAIS LA !!!!!
-        return null;
+
+        return service.rechercherVoituresSelonCritère(marque, prixMin, prixMax);
     }
 }
