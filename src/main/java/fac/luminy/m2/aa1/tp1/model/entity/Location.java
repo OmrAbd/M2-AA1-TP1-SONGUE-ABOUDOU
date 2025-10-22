@@ -1,10 +1,13 @@
 package fac.luminy.m2.aa1.tp1.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -18,23 +21,21 @@ public class Location{
 
     @NotNull
     @ManyToOne
-    private Personne locataire;
+    private Client locataire;
 
     @NotNull
     @ManyToOne
     private Voiture voiture;
 
     @NotNull
-    @ManyToOne
-    private Personne proprietaire;
+    private LocalDate startDate;
 
     @NotNull
+    @Min(value = 1)
     private int nombreDeJour = 1;
 
-    @PrePersist
-    @PreUpdate
-    private void syncProprietaire() {
-        if (voiture != null)
-            proprietaire = voiture.getProprietaire();
+    public LocalDate endDate(){
+        return startDate.plusDays(nombreDeJour);
     }
+
 }

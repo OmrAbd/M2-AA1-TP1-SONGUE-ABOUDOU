@@ -1,23 +1,23 @@
 package fac.luminy.m2.aa1.tp1.model.dto;
 
 import fac.luminy.m2.aa1.tp1.model.entity.Location;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+import java.time.LocalDate;
+
+@Data
 public class LocationDTO {
     private Long id;
-    private PersonneDTO locataire;
+    private ClientDTO locataire;
     private VoitureDTO voiture;
-    private PersonneDTO proprietaire;
+    private LocalDate startDate;
     private int nombreDeJour;
 
     public LocationDTO(Location location){
         this.id = location.getId();
-        this.locataire = new PersonneDTO(location.getLocataire());
+        this.locataire = new ClientDTO(location.getLocataire());
         this.voiture = new VoitureDTO(location.getVoiture());
-        this.proprietaire = new PersonneDTO(location.getProprietaire());
+        this.startDate = location.getStartDate();
         this.nombreDeJour = location.getNombreDeJour();
     }
 }
